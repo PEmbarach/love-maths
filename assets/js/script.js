@@ -15,6 +15,12 @@ document.addEventListener("DOMContentLoaded", function(){
     })
   }
 
+  document.getElementById("answer-box").addEventListener("keydown", function(event){
+    if (event.key === "Enter") {
+      checkAnswer();
+    }
+  })
+
   runGame("addition");
 })
 
@@ -24,20 +30,24 @@ document.addEventListener("DOMContentLoaded", function(){
  * and afther the user's answer has been processed
  */
 function runGame(gameType) {
-    // Creates to random numbers between 1 and 25
-    let num1 = Math.floor(Math.random()* 25) + 1;
-    let num2 = Math.floor(Math.random()* 25) + 1;
 
-    if (gameType === "addition"){
-      displayAdditionQuestion(num1, num2);
-    } else if (gameType === "subtract") {
-      displaySubtractQuestion(num1, num2);
-    }  else if (gameType === "multiply") {
-      displayMultiplyQuestion(num1, num2);
-    } else {
-      alert(`Unknown game type: ${gameType}`);
-      throw `Unknown game type: ${gameType}. Aborting!`;
-    }
+  document.getElementById("answer-box").value = "";
+  document.getElementById("answer-box").focus();
+
+  // Creates to random numbers between 1 and 25
+  let num1 = Math.floor(Math.random()* 25) + 1;
+  let num2 = Math.floor(Math.random()* 25) + 1;
+
+  if (gameType === "addition"){
+    displayAdditionQuestion(num1, num2);
+  } else if (gameType === "subtract") {
+    displaySubtractQuestion(num1, num2);
+  }  else if (gameType === "multiply") {
+    displayMultiplyQuestion(num1, num2);
+  } else {
+    alert(`Unknown game type: ${gameType}`);
+    throw `Unknown game type: ${gameType}. Aborting!`;
+  }
 }
 
 /**
